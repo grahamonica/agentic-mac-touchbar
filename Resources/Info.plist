@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>AgentBar</string>
+    <key>CFBundleExecutable</key>
+    <string>AgentBar</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.monicagraham.AgentBar</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>AgentBar</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+	<string>0.2.2</string>
+    <key>CFBundleVersion</key>
+	<string>10</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>13.0</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>AgentBar opens Terminal for the one-time Claude subscription sign-in.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>AgentBar uses the microphone to dictate new Codex and Claude chats.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>AgentBar transcribes microphone input into new Codex and Claude chats.</string>
+    <key>AgentBarDefaultWorkspace</key>
+    <string>__AGENTBAR_DEFAULT_WORKSPACE__</string>
+</dict>
+</plist>
