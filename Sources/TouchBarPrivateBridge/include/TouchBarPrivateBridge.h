@@ -6,6 +6,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// intentionally cannot be shipped through the Mac App Store.
 BOOL ABInstallControlStripItem(NSCustomTouchBarItem *item);
 void ABSetControlStripItemVisible(NSTouchBarItemIdentifier identifier, BOOL visible);
+NSArray<NSString *> *ABTouchBarButtonTitles(void);
+NSString * _Nullable ABTouchBarPresentationMode(void);
+BOOL ABSetTouchBarPresentationMode(NSString * _Nullable mode);
+void ABRestartControlStrip(void);
 BOOL ABPresentSystemTouchBar(
     NSTouchBar *touchBar,
     NSTouchBarItemIdentifier identifier,
