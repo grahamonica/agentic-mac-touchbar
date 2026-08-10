@@ -17,9 +17,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-	<string>0.2.2</string>
+    <string>0.2.3</string>
     <key>CFBundleVersion</key>
-	<string>10</string>
+    <string>11</string>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
     <key>LSUIElement</key>
@@ -28,6 +28,8 @@
     <string>AgentBar opens Terminal for the one-time Claude subscription sign-in.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>AgentBar uses the microphone to dictate new Codex and Claude chats.</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>AgentBar transcribes microphone input into new Codex and Claude chats.</string>
     <key>AgentBarDefaultWorkspace</key>
