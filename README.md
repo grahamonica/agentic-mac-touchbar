@@ -1,6 +1,6 @@
 # AgentBar
 
-AgentBar is a native macOS companion for the physical MacBook Pro Touch Bar. It puts Codex and Claude in one compact control surface without OpenAI or Anthropic API keys.
+AgentBar is a native macOS companion for the physical MacBook Pro Touch Bar. It puts Codex and Claude in one compact control surface and connects to your desktop accounts so it doesn't need OpenAI or Anthropic API keys (or draw from extra usage).
 
 The expanded Touch Bar contains:
 
@@ -22,19 +22,7 @@ Selecting Codex or Claude activates that desktop app and then re-presents AgentB
 
 Codex connects through the official local `codex app-server` protocol. It inherits the existing `Logged in using ChatGPT` session, exposes approvals and streamed completion events, and reads plan rate limits directly from the account session.
 
-Completion state is status-aware: successful turns play the completion cue, while failed or interrupted turns surface an error instead. Resolved or timed-out permission requests automatically clear their Touch Bar buttons. Managed network prompts show their destination rather than an unrelated command preview.
-
-AgentBar retains the persistent thread identifier for a Touch Bar-created Codex chat. Switching back to Codex or tapping its status uses Codex Desktop's `codex://threads/<thread-id>` handler to open that exact chat.
-
-AgentBar also watches only the event-type field in recent local Codex rollout files. This lets a task started directly in Codex Desktop surface working, completion, and interruption notifications on the Touch Bar. It deliberately ignores prompt, response, reasoning, and tool content. Cross-client approval responses are not available in Codex's protocol, so Allow/Deny is actionable for AgentBar-started chats; a permission owned by an existing Codex window remains answered in that window.
-
 Claude uses the Claude Code executable that ships inside Claude Desktop. Select Claude and tap its **Connect Claude** Touch Bar status, or click **Connect Claude Subscription…** in the menu, once to refresh Claude Code's OAuth session. AgentBar brings Terminal forward and explicitly runs the Claude.ai subscription login—not Console/API billing—then the browser handles authentication. Claude usage is read from the live subscription control payload with Claude Desktop's local plan-usage history as a fallback.
-
-After opening the browser login, AgentBar checks the local Claude subscription session for up to ten minutes and switches to Ready automatically when OAuth finishes. It also detects a login completed outside AgentBar during its normal refresh cycle.
-
-AgentBar captures the persisted Claude Code session identifier for a Touch Bar-created chat. Switching back to Claude or tapping its status then uses Claude Desktop's `claude://resume?session=…` handler to import and open that exact conversation.
-
-When Claude is connected, AgentBar requests the live subscription `get_usage` control payload (5-hour and 7-day windows). The local desktop history is only a fallback and is visibly marked as needing a refresh when it is more than six hours old.
 
 No API key is read, stored, or requested by AgentBar.
 
@@ -66,7 +54,7 @@ The bridge is isolated in `Sources/TouchBarPrivateBridge`; all agent, speech, an
 
 ## Privacy and permissions
 
-- audio is transcribed through Apple's Speech framework; AgentBar does not upload audio itself
+- audio is transcribed through Apple's Speech framework
 - agent prompts go only to the selected installed agent through its subscription session
 - approvals default to one action/turn and are never silently accepted
 - Claude actions that require a rich interaction card open Claude instead of reducing the decision to an unsafe binary choice
