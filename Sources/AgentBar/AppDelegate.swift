@@ -27,7 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         _ sender: NSApplication,
         hasVisibleWindows flag: Bool
     ) -> Bool {
-        touchBarController.showTouchBar()
+        touchBarController.presentTouchBar(trigger: "appReopen")
         return true
     }
 
@@ -111,7 +111,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     @objc private func showTouchBar() {
-        touchBarController.showTouchBar()
+        touchBarController.presentTouchBar(trigger: "menu")
     }
 
     @objc private func openCodex() {
@@ -124,13 +124,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @objc private func dictateCodex() {
         coordinator.select(.codex, activateApplication: false)
-        touchBarController.showTouchBar()
+        touchBarController.presentTouchBar(trigger: "dictateCodex")
         coordinator.toggleDictation()
     }
 
     @objc private func dictateClaude() {
         coordinator.select(.claude, activateApplication: false)
-        touchBarController.showTouchBar()
+        touchBarController.presentTouchBar(trigger: "dictateClaude")
         coordinator.toggleDictation()
     }
 
@@ -150,7 +150,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         guard alert.runModal() == .alertFirstButtonReturn else { return }
         coordinator.setDraft(field.stringValue)
         coordinator.sendDraft()
-        touchBarController.showTouchBar()
+        touchBarController.presentTouchBar(trigger: "typedChat")
     }
 
     @objc private func chooseWorkingFolder() {

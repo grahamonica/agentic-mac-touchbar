@@ -3,6 +3,7 @@ import Foundation
 
 protocol AgentCoordinatorDelegate: AnyObject {
     func coordinatorDidUpdate(_ coordinator: AgentCoordinator)
+    func coordinator(_ coordinator: AgentCoordinator, didUpdateSpeechLevel level: Float)
     func coordinator(_ coordinator: AgentCoordinator, shouldPresent event: AgentCoordinator.PresentationEvent)
 }
 
@@ -32,6 +33,7 @@ final class AgentCoordinator: AgentConnectorDelegate, SpeechControllerDelegate {
     private(set) var approvals: [AgentProvider: ApprovalRequest] = [:]
     private(set) var draft = ""
     private(set) var speechError: String?
+    private(set) var speechLevel: Float = 0
     private(set) var codexDesktopObservation = "Watching desktop tasks"
 
     var workingDirectory: URL {
@@ -238,13 +240,20 @@ final class AgentCoordinator: AgentConnectorDelegate, SpeechControllerDelegate {
         delegate?.coordinatorDidUpdate(self)
     }
 
+    func speechController(didUpdateAudioLevel level: Float) {
+        speechLevel = level
+        delegate?.coordinator(self, didUpdateSpeechLevel: level)
+    }
+
     func speechControllerDidStart() {
         draft = ""
+        speechLevel = 0
         delegate?.coordinatorDidUpdate(self)
     }
 
     func speechControllerDidStop(finalTranscript: String) {
         draft = finalTranscript
+        speechLevel = 0
         delegate?.coordinatorDidUpdate(self)
     }
 
